@@ -1,14 +1,12 @@
 package com.example;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
+@Path("asyncBuild")
 public class MyResource {
 
     /**
@@ -18,8 +16,17 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
+    @Path("/getit")
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Got it!";
+        return String.format("Got it! %s \n", "as");
+    }
+
+    @POST
+    @Path("/doPost")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean add(@FormParam("name") String name) {
+        // TODO save
+        return true;
     }
 }
